@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mapa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css" />
+	<script src="https://unpkg.com/leaflet-extra-markers/dist/js/leaflet.extra-markers.min.js"></script>
+	
+    <style>
+        html, body, #mapid {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div>
+    <script>
+        var defaultPosition = [49.7, 16.5];
+        var defaultZoom = 8;
+        
+		// Retrieve stored position and zoom from localStorage
+		var storedPosition = JSON.parse(localStorage.getItem('mapPosition'));
+        var storedZoom = parseInt(localStorage.getItem('mapZoom'));
+        
+		// Set initial position and zoom based on stored or default values
+		var startPosition = storedPosition || defaultPosition;
+        var startZoom = storedZoom || defaultZoom;
+		
+		// Create the map with initial position and zoom
+		var mymap = L.map('mapid').setView(startPosition, startZoom);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(mymap);
+		// Function to add markers
+        function addMarkers() {
+            $.getJSON('/get_markers', function(data) {
+            var newMarkers = L.featureGroup(); // Create a new marker group
+            for (var i = 0; i < data.cameras.length; i++) {
+			var marker = data.cameras[i];
+			var markerIcon = L.ExtraMarkers.icon({
+					icon: 'fa-number',
+					markerColor: 'blue',
+					shape: 'circle',
+					prefix: 'fa',
+					number: marker.spots
+				});
+			var markerLayer = L.marker([marker.lat, marker.lon], {icon: markerIcon});
+			newMarkers.addLayer(markerLayer);
+                }
+       		mymap.removeLayer(markers); // Remove old markers from the map
+        	markers = newMarkers; // Update the marker group with new markers
+        	mymap.addLayer(markers); // Add the new marker group to the map
+            });
+        }
+		var markers = L.featureGroup();
+        addMarkers(); // Run on initial load
+        setInterval(addMarkers, 60000); // Run every minute (60000 ms)
+		
+		// Save the map position and zoom to localStorage when position changes
+        mymap.on('moveend', function(e) {
+            var currentPosition = mymap.getCenter();
+            var currentZoom = mymap.getZoom();
+            localStorage.setItem('mapPosition', JSON.stringify(currentPosition));
+            localStorage.setItem('mapZoom', currentZoom);
+        });
+    </script>
+</body>
+</html>

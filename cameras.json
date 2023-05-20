@@ -1,0 +1,46 @@
+{
+    "cameras": [
+        {
+            "uniqueID": "Chodov_NC_a",
+            "url": "http://82.208.53.196:81/oneshotimage1?1679932771",
+            "lat": 50.24018,
+            "lon": 12.74451,
+            "spots": 1
+        },
+        {
+            "uniqueID": "Chodov_NC_b",
+            "url": "http://82.208.53.196:82/oneshotimage1?1679932758",
+            "lat": 50.24018,
+            "lon": 12.74551,
+            "spots": 9
+        },
+        {
+            "uniqueID": "Brno_Prehrada",
+            "url": "https://prehrada.gcm.cz/prehrada.jpg?rnd=0.32494827748224964",
+            "lat": 49.22106582819563,
+            "lon": 16.508497663773667,
+            "spots": 30
+        },
+        {
+            "uniqueID": "Ostrava_stodolni",
+            "url": "http://89.29.49.6/mjpg/video.mjpg",
+            "lat": 49.83465,
+            "lon": 18.28204,
+            "spots": 2
+        },
+        {
+            "uniqueID": "Vsetin_MG",
+            "url": "http://212.111.11.221/jpg/image.jpg?",
+            "lat": 49.33871,
+            "lon": 17.99619,
+            "spots": 12
+        },
+        {
+            "uniqueID": "Velke_Mezirici_namesti",
+            "url": "http://78.156.144.220/mjpg/video.mjpg",
+            "lat": 49.35522,
+            "lon": 16.01224,
+            "spots": 15
+        }
+    ]
+}
