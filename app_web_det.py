@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Script for performing vacancy parking spot detection and running a Flask server
- that displays the amount of detected vacant parking spots on a map.
+that displays the amount of detected vacant parking spots on a map.
 
 Author: Bc. Marek Sicha
 """
