@@ -1,6 +1,6 @@
 # Parking-Spot-Recognition-by-Artificial-Intelligence
 
-This code is part of master thesis, focused on detection of vacant parking spaces. The thesis is avaiable [here](https://www.vut.cz/studenti/zav-prace/detail/151758).
+This code is part of master thesis focused on detection of vacant parking spaces. The thesis is avaiable [here](https://www.vut.cz/studenti/zav-prace/detail/151758).
 
 ---
 ## Citations
